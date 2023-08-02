@@ -4,7 +4,7 @@ const processMessage = require("../shared/processMessage");
 const VerifyToken = (req, res) => {
     
     try{
-        var accessToken = "RTQWWTVHBDEJHJKIKIKNDS9090DS";
+        var accessToken = "DASKFN243597324DF9823EE";
         var token = req.query["hub.verify_token"];
         var challenge = req.query["hub.challenge"];
 
