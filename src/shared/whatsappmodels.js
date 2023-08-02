@@ -11,6 +11,42 @@ function MessageText(textResponse, number){
     return data;
 }
 
+function MessageContact(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,    
+        "type": "contact",
+        "contacts": [
+            {
+                "addresses": [
+                    {
+                        "street": "Avenida Juárez #127",
+                        "city": "Ciudad de México",
+                        "state": "Coyoacán",
+                        "zip": "04040",
+                        "country": "México",
+                        "country_code": "+52",
+                        "type": "WORK"
+                    }
+                ],
+                "org": {
+                    "company": "Pizzería Rocko",
+                    "department": "Ventas",
+                    "title": "Pizzas Rocko"
+                },
+                "phones": [
+                    {
+                        "phone": "55555555555",
+                        "wa_id": "52555555555",
+                        "type": "WORK"
+                    }
+                ]
+            }
+        ]
+    });
+    return data;
+}
+
 function MessageList(number){
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
@@ -63,7 +99,286 @@ function MessageList(number){
     });
     return data;
 }
-function MessageComprar(number){
+
+function MessagePizzaSizeOneIngredient(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "interactive",
+        "interactive": {
+            "type": "list",
+            "body": {
+                "text": "*2* ¿De qué tamaño quieres tu pizza 🍕?"
+            },
+            "footer": {
+                "text": "Escoje el tamaño ideal para tu hambre de pizza! 🤩"
+            },
+            "action": {
+                "button": "Ver tamaños",
+                "sections": [
+                    {
+                        "title": "Tamaños",
+                        "rows": [
+                            {
+                                "id": "pz-small",
+                                "title": "Chica sencilla",
+                                "description": "$130"
+                            },
+                            {
+                                "id": "pz-medium",
+                                "title": "Mediana sencilla",
+                                "description": "$180"
+                            },
+                            {
+                                "id": "pz-big",
+                                "title": "Grande sencilla",
+                                "description": "$240"
+                            },
+                            {
+                                "id": "pz-family",
+                                "title": "Familiar sencilla",
+                                "description": "$280"
+                            },
+                        ]
+                    }
+                ]
+            }
+        }
+    });
+    return data;
+}
+
+function MessagePizzaSizeSpecialIngredients(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "interactive",
+        "interactive": {
+            "type": "list",
+            "body": {
+                "text": "*2* ¿De qué tamaño quieres tu pizza 🍕?"
+            },
+            "footer": {
+                "text": "Escoje el tamaño ideal para tu hambre de pizza! 🤩"
+            },
+            "action": {
+                "button": "Ver tamaños",
+                "sections": [
+                    {
+                        "title": "Tamaños",
+                        "rows": [
+                            {
+                                "id": "pz-small",
+                                "title": "Chica especial",
+                                "description": "$165"
+                            },
+                            {
+                                "id": "pz-medium",
+                                "title": "Mediana especial",
+                                "description": "$210"
+                            },
+                            {
+                                "id": "pz-big",
+                                "title": "Grande especial",
+                                "description": "$280"
+                            },
+                            {
+                                "id": "pz-family",
+                                "title": "Familiar especial",
+                                "description": "$345"
+                            },
+                        ]
+                    }
+                ]
+            }
+        }
+    });
+    return data;
+}
+
+function MessagePizzaIngredients(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "interactive",
+        "interactive": {
+            "type": "list",
+            "body": {
+                "text": "*1* ¿De cuántos ingredientes quieres tu pizza 🍕?"
+            },
+            "footer": {
+                "text": "Escoje la cantidad de ingredientes para tu pizza! 🍍🥩🥓"
+            },
+            "action": {
+                "button": "Ver lista de ingredientes",
+                "sections": [
+                    {
+                        "title": "Ingredientes",
+                        "rows": [
+                            {
+                                "id": "one-ingr",
+                                "title": "1 ingrediente 😋",
+                            },
+                            {
+                                "id": "special-ingr",
+                                "title": "Más de 2 ingredientes 😜",
+                            },
+                        ]
+                    }
+                ]
+            }
+        }
+    });
+    return data;
+}
+
+function MessagePizzaOneIngredient(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "interactive",
+        "interactive": {
+            "type": "list",
+            "body": {
+                "text": "*3* Escoje tu ingrediente"
+            },
+            "footer": {
+                "text": "Escoje de nuestra lista los mejores ingredientes para tu pizza! 🍍🥩🥓"
+            },
+            "action": {
+                "button": "Ver lista de ingredientes",
+                "sections": [
+                    {
+                        "title": "Ingredientes",
+                        "rows": [
+                            {
+                                "id": "in-chicken",
+                                "title": "Pollo",
+                            },
+                            {
+                                "id": "in-sausage",
+                                "title": "Salchicha",
+                            },
+                            {
+                                "id": "in-mashroom",
+                                "title": "Champiñón",
+                            },
+                            {
+                                "id": "in-tuna",
+                                "title": "Atún",
+                            },
+                            {
+                                "id": "in-ham",
+                                "title": "Jamón",
+                            },
+                        ]
+                    }
+                ]
+            }
+        }
+    });
+    return data;
+}
+
+function MessagePizzaSpecialIngredients(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "interactive",
+        "interactive": {
+            "type": "list",
+            "body": {
+                "text": "*3* Escoje tu ingrediente especial"
+            },
+            "footer": {
+                "text": "Escoje de nuestra lista de los mejores ingredientes para tu pizza! 🍍🥩🥓"
+            },
+            "action": {
+                "button": "Ver lista de ingredientes",
+                "sections": [
+                    {
+                        "title": "Ingredientes",
+                        "rows": [
+                            {
+                                "id": "in-haw-k",
+                                "title": "Hawaiana kids",
+                                "description":"jamón, piña, cereza"
+                            },
+                            {
+                                "id": "in-haw",
+                                "title": "Hawaiana",
+                                "description":"jamón, piña, tocino"
+                            },
+                            {
+                                "id": "in-vege",
+                                "title": "Vegetariana",
+                                "description":"champiñones, cebolla, pimiento verde y aceitunas"
+                            },
+                            {
+                                "id": "in-pastor",
+                                "title": "Pastor",
+                                "description":"carne al pastor, piña, chipotle, o jalapeño"
+                            },
+                            {
+                                "id": "in-clas",
+                                "title": "Clásica",
+                                "description":"peperoni, champiñones y pimiento verde"
+                            },
+                            {
+                                "id": "in-pira",
+                                "title": "Pirata",
+                                "description":"atún, cebolla, chipotle y aceitunas"
+                            },
+                            {
+                                "id": "in-cub",
+                                "title": "Cubana",
+                                "description":"pierna, atún, tocino, jalapeños, jitomate y aguacate"
+                            },
+                            {
+                                "id": "in-plan-esp",
+                                "title": "Planeta especial",
+                                "description":"pierna, pollo, aguacate y elote"
+                            },
+                            {
+                                "id": "in-camp",
+                                "title": "Campestre",
+                                "description":"champiñon, pollo, salami, elote y chipotle"
+                            },
+                            {
+                                "id": "in-mafi",
+                                "title": "Mafiosa",
+                                "description":"champiñones, jalapeños, salami y tocino"
+                            },
+                            {
+                                "id": "in-ranch",
+                                "title": "Ranchera",
+                                "description":"frijoles, jalapeños, chrizo y aguacate"
+                            },
+                            {
+                                "id": "in-carn-fr",
+                                "title": "Carnes frías",
+                                "description":"peperoni, lomo, salchica, tocino y pierna"
+                            },
+                            {
+                                "id": "in-mex",
+                                "title": "Mexicana",
+                                "description":"pierna, pollo, aguacate y jalapeños"
+                            },
+                            {
+                                "id": "in-comb-esp",
+                                "title": "Combinada especial",
+                                "description":"champiñones, jamón, peperoni, pimiento verde, chorizo y salami"
+                            },
+                        ]
+                    }
+                ]
+            }
+        }
+    });
+    return data;
+}
+
+function MessageOptions(number){
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
@@ -71,22 +386,62 @@ function MessageComprar(number){
         "interactive": {
             "type": "button",
             "body": {
-                "text": "Selecciona uno de los productos"
+                "text": "¿Qué deseas hacer?"
             },
             "action": {
                 "buttons": [
                     {
                         "type": "reply",
                         "reply": {
-                            "id": "option-laptop",
-                            "title": "Laptop"
+                            "id": "option-pizza",
+                            "title": "Comprar una pizza"
                         }
                     },
                     {
                         "type": "reply",
                         "reply": {
-                            "id": "option-computadora",
-                            "title": "Computadora"
+                            "id": "option-pizzas",
+                            "title": "Comprar más de 2"
+                        }
+                    },
+                    {
+                        "type": "reply",
+                        "reply": {
+                            "id": "option-call",
+                            "title": "Llamar a la pizzería"
+                        }
+                    }
+                ]
+            }
+        }     
+    });
+    return data;
+}
+
+function MessageOptionsDelivery(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "interactive",  
+        "interactive": {
+            "type": "button",
+            "body": {
+                "text": "Confirmar pedido"
+            },
+            "action": {
+                "buttons": [
+                    {
+                        "type": "reply",
+                        "reply": {
+                            "id": "option-yes",
+                            "title": "✅ Confirmar pedido"
+                        }
+                    },
+                    {
+                        "type": "reply",
+                        "reply": {
+                            "id": "option-cancel",
+                            "title": "⛔ Cancelar pedido"
                         }
                     }
                 ]
@@ -115,6 +470,13 @@ function MessageLocation(number){
 module.exports = {
 MessageText,
 MessageList,
-MessageComprar,
-MessageLocation
+MessageOptions,
+MessageLocation,
+MessagePizzaSizeOneIngredient,
+MessagePizzaSizeSpecialIngredients,
+MessageContact,
+MessagePizzaIngredients,
+MessagePizzaOneIngredient,
+MessagePizzaSpecialIngredients,
+MessageOptionsDelivery
 };

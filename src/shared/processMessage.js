@@ -5,57 +5,103 @@ function Process(textUser, number){
     textUser= textUser.toLowerCase();
     let models = [];
 
-    if(textUser.includes("hola")){
-        //SAUDAR
+    if(textUser.includes("hola") ||
+    textUser.includes("buenas") ||
+    textUser.includes("ola")
+    ){
         let model = whatsappModel.MessageText("Hola, un gusto saludarte. 👋", number);
         models.push(model);
-        let modelList = whatsappModel.MessageList(number);
+
+        let model2 = whatsappModel.MessageText("Bienvenido a la 🍕*pizzería Rocko*🍕, ¿en qué podemos ayudarte 😃?", number);
+        models.push(model2);
+
+        let modelBuy = whatsappModel.MessageOptions(number);
+        models.push(modelBuy);
+    }
+    else if(textUser === "Comprar una pizza"){
+        
+        let model = whatsappModel.MessageText("Antes de hacer tu pedido, escribe tu dirección para validar la cobertura y conocer la dirección de entrega por favor", number);
+        models.push(model);
+
+    }
+    else if(textUser === "Comprar más de 1 pizza"){
+
+        let model = whatsappModel.MessageText("Para pedidos mayores a 2 pizzas debes de comunicarte directo a la pizzería", number);
+        models.push(model);
+
+        let model2 = whatsappModel.MessageContact(number);
+        models.push(model2);
+    }
+    else if(textUser.includes("tlalmanalco")) {
+
+        let model = whatsappModel.MessageText("!Muchas gracias! si tenemos cobertura hasta tu domicilio, empieza a hacer tu pedido", number);
+        models.push(model);
+
+        let modelList = whatsappModel.MessagePizzaIngredients(number);
+        models.push(modelList);
+
+    }
+    else if(textUser === '1 ingrediente 😋'){
+        let modelList = whatsappModel.MessagePizzaSizeOneIngredient(number);
         models.push(modelList);
     }
-    else if(textUser.includes("gracias")){
-        // agradecimiento
-        let model = whatsappModel.MessageText("Gracias a ti por escribirme. 😉😎", number);
+    else if(textUser === 'Más de 2 ingredientes 😜'){
+        let modelList = whatsappModel.MessagePizzaSizeSpecialIngredients(number);
+        models.push(modelList);
+    }
+    else if(textUser.includes("sencilla") ){
+        let modelList = whatsappModel.MessagePizzaOneIngredient(number);
+        models.push(modelList);
+    }
+    else if(textUser.includes("especial") ){
+        let modelList = whatsappModel.MessagePizzaSpecialIngredients(number);
+        models.push(modelList);
+    }
+    else if(textUser === "pollo" ||
+    textUser === "salchicha" ||
+    textUser === "champiñón" ||
+    textUser === "atún" || 
+    textUser === "jamón"){
+        let modelSummary = whatsappModel.MessageText("!Muy bien! este sería un resumen de tu pedido:" + models, number);
+        models.push(modelSummary);
+
+        let modelConfirmation = whatsappModel.MessageOptionsDelivery(number);
+        models.push(modelConfirmation);
+    }
+    else if(textUser === "Hawaiana kids" ||
+    textUser === "Hawaiana" ||
+    textUser === "Vegetariana" ||
+    textUser === "Pastor" || 
+    textUser === "Clásica" ||
+    textUser === "Pirata" ||
+    textUser === "Cubana" ||
+    textUser === "Planeta especial" ||
+    textUser === "Campestre" ||
+    textUser === "Mafiosa" ||
+    textUser === "Ranchera" ||
+    textUser === "Carnes frías" ||
+    textUser === "Mexicana" ||
+    textUser === "Combinada especial"){
+        let modelSummary = whatsappModel.MessageText("!Muy bien! este sería un resumen de tu pedido:" + models, number);
+        models.push(modelSummary);
+
+        let modelConfirmation = whatsappModel.MessageOptionsDelivery(number);
+        models.push(modelConfirmation);
+    }
+    else if(textUser === '✅ Confirmar pedido') {
+        let modelSummary = whatsappModel.MessageText("!Excelente en un máximo de 30 minutos llegará nuestro repartidor 🛵!", number);
+        models.push(modelSummary);
+    }
+    else if(textUser === '⛔ Cancelar pedido') {
+        let modelSummary = whatsappModel.MessageText("Lamentamos que hayas cancelado tu pedido, seguimos aqui para que vuelvas a pedir tu pizza", number);
+        models.push(modelSummary);
+    }
+    else if(textUser === "Llamar a la pizzería"){
+        let model = whatsappModel.MessageContact(number);
         models.push(model);       
-
-    }
-    else if(textUser.includes("adios") ||
-    textUser.includes("adiós")||
-    textUser.includes("bye")||
-    textUser.includes("me voy")
-    ){
-        // despedir
-        let model = whatsappModel.MessageText("Ve con cuidado. 😊", number);
-        models.push(model);
-    }
-    else if(textUser.includes("comprar")){
-        // comprar
-        let model = whatsappModel.MessageComprar(number);
-        models.push(model);
-
-    }
-    else if(textUser.includes("vender")){
-        // vender
-        let model = whatsappModel.MessageText("👉 Regístrate en el siguiente formulario para poder evaluarte: https://form.jotform.com/222507994363665", number);
-        models.push(model);       
-
-    }
-    else if(textUser.includes("agencia")){
-        // agencia
-        let model = whatsappModel.MessageText("Aquí tienes nuestra dirección. 😊", number);
-        models.push(model);
-        let modelLocation = whatsappModel.MessageLocation(number);
-        models.push(modelLocation);       
-
-    }
-    else if(textUser.includes("contacto")){
-        // vender
-        let model = whatsappModel.MessageText("📞*Centro de contacto:*\n912345678", number);
-        models.push(model);       
-
     }
     else{
-        //No entiende
-        let model = whatsappModel.MessageText("No entiendo lo que dices", number);
+        let model = whatsappModel.MessageText("🤔 No te puedo ayudar de momento, ¿puedes ser mas específico por favor 😊?", number);
         models.push(model);
     }
 
