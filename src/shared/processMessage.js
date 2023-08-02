@@ -3,18 +3,18 @@ const whatsappService = require("../services/whatsappService");
 
 function Process(textUser, number){
     textUser= textUser.toLowerCase();
-    var models = [];
+    let models = [];
 
     if(textUser.includes("hola")){
         //SAUDAR
-        var model = whatsappModel.MessageText("Hola, un gusto saludarte. 👋", number);
+        let model = whatsappModel.MessageText("Hola, un gusto saludarte. 👋", number);
         models.push(model);
-        var modelList = whatsappModel.MessageList(number);
+        let modelList = whatsappModel.MessageList(number);
         models.push(modelList);
     }
     else if(textUser.includes("gracias")){
         // agradecimiento
-        var model = whatsappModel.MessageText("Gracias a ti por escribirme. 😉😎", number);
+        let model = whatsappModel.MessageText("Gracias a ti por escribirme. 😉😎", number);
         models.push(model);       
 
     }
@@ -24,38 +24,38 @@ function Process(textUser, number){
     textUser.includes("me voy")
     ){
         // despedir
-        var model = whatsappModel.MessageText("Ve con cuidado. 😊", number);
+        let model = whatsappModel.MessageText("Ve con cuidado. 😊", number);
         models.push(model);
     }
     else if(textUser.includes("comprar")){
         // comprar
-        var model = whatsappModel.MessageComprar(number);
+        let model = whatsappModel.MessageComprar(number);
         models.push(model);
 
     }
     else if(textUser.includes("vender")){
         // vender
-        var model = whatsappModel.MessageText("👉 Regístrate en el siguiente formulario para poder evaluarte: https://form.jotform.com/222507994363665", number);
+        let model = whatsappModel.MessageText("👉 Regístrate en el siguiente formulario para poder evaluarte: https://form.jotform.com/222507994363665", number);
         models.push(model);       
 
     }
     else if(textUser.includes("agencia")){
         // agencia
-        var model = whatsappModel.MessageText("Aquí tienes nuestra dirección. 😊", number);
+        let model = whatsappModel.MessageText("Aquí tienes nuestra dirección. 😊", number);
         models.push(model);
-        var modelLocation = whatsappModel.MessageLocation(number);
+        let modelLocation = whatsappModel.MessageLocation(number);
         models.push(modelLocation);       
 
     }
     else if(textUser.includes("contacto")){
         // vender
-        var model = whatsappModel.MessageText("📞*Centro de contacto:*\n912345678", number);
+        let model = whatsappModel.MessageText("📞*Centro de contacto:*\n912345678", number);
         models.push(model);       
 
     }
     else{
         //No entiende
-        var model = whatsappModel.MessageText("No entiendo lo que dices", number);
+        let model = whatsappModel.MessageText("No entiendo lo que dices", number);
         models.push(model);
     }
 

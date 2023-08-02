@@ -1,12 +1,13 @@
 const fs = require("fs");
 const myConsole = new console.Console(fs.createWriteStream("./logs.txt"));
 const processMessage = require("../shared/processMessage");
+const whatsappService = require("../services/whatsappService");
 const VerifyToken = (req, res) => {
     
     try{
-        var accessToken = "DASKFN243597324DF9823EE";
-        var token = req.query["hub.verify_token"];
-        var challenge = req.query["hub.challenge"];
+        let accessToken = "DASKFN243597324DF9823EE";
+        let token = req.query["hub.verify_token"];
+        let challenge = req.query["hub.challenge"];
 
         if(challenge != null && token != null && token == accessToken){
             res.send(challenge);
@@ -21,18 +22,19 @@ const VerifyToken = (req, res) => {
 
 const ReceivedMessage = (req, res) => {
     try{
-        var entry = (req.body["entry"])[0];
-        var changes = (entry["changes"])[0];
-        var value = changes["value"];
-        var messageObject = value["messages"];
+        let entry = (req.body["entry"])[0];
+        let changes = (entry["changes"])[0];
+        let value = changes["value"];
+        let messageObject = value["messages"];
 
         if(typeof messageObject != "undefined"){
-            var messages = messageObject[0];
-            var number = messages["from"];
+            let messages = messageObject[0];
+            let number = messages["from"];
 
-            var text = GetTextUser(messages);
+            let text = GetTextUser(messages);
             
             if(text != ""){
+                whatsappService.SendMessageWhatsApp("Mensaje del usuario:" + text, number);
                 processMessage.Process(text, number);
             } 
 
@@ -46,15 +48,15 @@ const ReceivedMessage = (req, res) => {
 }
 
 function GetTextUser(messages){
-    var text = "";
-    var typeMessge = messages["type"];
+    let text = "";
+    let typeMessge = messages["type"];
     if(typeMessge == "text"){
         text = (messages["text"])["body"];
     }
     else if(typeMessge == "interactive"){
 
-        var interactiveObject = messages["interactive"];
-        var typeInteractive = interactiveObject["type"];
+        let interactiveObject = messages["interactive"];
+        let typeInteractive = interactiveObject["type"];
         
         if(typeInteractive == "button_reply"){
             text = (interactiveObject["button_reply"])["title"];
