@@ -1,7 +1,6 @@
 const fs = require("fs");
 const myConsole = new console.Console(fs.createWriteStream("./logs.txt"));
 const processMessage = require("../shared/processMessage");
-const whatsappService = require("../services/whatsappService");
 const VerifyToken = (req, res) => {
     
     try{
@@ -30,11 +29,11 @@ const ReceivedMessage = (req, res) => {
         if(typeof messageObject != "undefined"){
             let messages = messageObject[0];
             let number = messages["from"];
+            number = number.replace('521','52');
 
             let text = GetTextUser(messages);
             
             if(text != ""){
-                whatsappService.SendMessageWhatsApp("Mensaje del usuario:" + text, number);
                 processMessage.Process(text, number);
             } 
 
