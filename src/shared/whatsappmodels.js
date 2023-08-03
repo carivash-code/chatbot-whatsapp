@@ -210,18 +210,18 @@ function MessagePizzaIngredients(number){
                 "text": "Escoje la cantidad de ingredientes para tu pizza! 🍍🥩🥓"
             },
             "action": {
-                "button": "Ver lista de ingredientes",
+                "button": "Ingredientes",
                 "sections": [
                     {
                         "title": "Ingredientes",
                         "rows": [
                             {
                                 "id": "one-ingr",
-                                "title": "1 ingrediente 😋",
+                                "title": "1 ingrediente",
                             },
                             {
                                 "id": "special-ingr",
-                                "title": "Más de 2 ingredientes 😜",
+                                "title": "Más de 2 ingredientes",
                             },
                         ]
                     }
@@ -243,10 +243,10 @@ function MessagePizzaOneIngredient(number){
                 "text": "*3* Escoje tu ingrediente"
             },
             "footer": {
-                "text": "Escoje de nuestra lista los mejores ingredientes para tu pizza! 🍍🥩🥓"
+                "text": "Lista de ingredientes"
             },
             "action": {
-                "button": "Ver lista de ingredientes",
+                "button": "Ingredientes",
                 "sections": [
                     {
                         "title": "Ingredientes",
@@ -291,10 +291,10 @@ function MessagePizzaSpecialIngredients(number){
                 "text": "*3* Escoje tu ingrediente especial"
             },
             "footer": {
-                "text": "Escoje de nuestra lista de los mejores ingredientes para tu pizza! 🍍🥩🥓"
+                "text": "Ingredientes"
             },
             "action": {
-                "button": "Ver lista de ingredientes",
+                "button": "Ingredientes",
                 "sections": [
                     {
                         "title": "Ingredientes",
@@ -348,27 +348,7 @@ function MessagePizzaSpecialIngredients(number){
                                 "id": "in-mafi",
                                 "title": "Mafiosa",
                                 "description":"champiñones, jalapeños, salami y tocino"
-                            },
-                            {
-                                "id": "in-ranch",
-                                "title": "Ranchera",
-                                "description":"frijoles, jalapeños, chrizo y aguacate"
-                            },
-                            {
-                                "id": "in-carn-fr",
-                                "title": "Carnes frías",
-                                "description":"peperoni, lomo, salchica, tocino y pierna"
-                            },
-                            {
-                                "id": "in-mex",
-                                "title": "Mexicana",
-                                "description":"pierna, pollo, aguacate y jalapeños"
-                            },
-                            {
-                                "id": "in-comb-esp",
-                                "title": "Combinada especial",
-                                "description":"champiñones, jamón, peperoni, pimiento verde, chorizo y salami"
-                            },
+                            }
                         ]
                     }
                 ]
