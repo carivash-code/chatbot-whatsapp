@@ -1,3 +1,115 @@
+const fs = require("fs");
+const myConsole = new console.Console(fs.createWriteStream("./logs.txt"));
+
+function MessageMainMenu(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "interactive",  
+        "interactive": {
+            "type": "button",
+            "body": {
+                "text": "Menú principal"
+            },
+            "action": {
+                "buttons": [
+                    {
+                        "type": "reply",
+                        "reply": {
+                            "id": "option-menu",
+                            "title": "Ver el menú"
+                        }
+                    },
+                    {
+                        "type": "reply",
+                        "reply": {
+                            "id": "option-pedido",
+                            "title": "Realizar pedido"
+                        }
+                    },
+                    {
+                        "type": "reply",
+                        "reply": {
+                            "id": "option-contacto",
+                            "title": "Contácto tel."
+                        }
+                    }
+                ]
+            }
+        }     
+    });
+    return data;
+}
+
+function MessageImage(number) {
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "image",  
+        "image": {
+            "link": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh6bh8DF6sxElhPGhgi_dYq1vG2ixzXawQWrXerBjivmsY2CGi9dVcDQWIW-WjGA9pngawr9dDYGjfMTSL6R6Cl4BZ01Nc9OHfXUwtdWaavTUSF6m2cyzynRi_2DklY9qutQTLFTAYIS2OQawVYwNmZQ6EnxzhDS2XeFyfKxI3rHmfzUmDpyqVTJuJYnCU3/s1600/WhatsApp%20Image%202023-08-02%20at%2014.52.03.jpeg",
+        }
+    });
+    return data;
+}
+
+function MessageContact(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "contacts",
+        "contacts": [
+            {
+                "addresses": [
+                    {
+                        "street": "Av. Mirador #55",
+                        "city": "Tlalmanalco",
+                        "state": "Estado de México",
+                        "zip": "56700",
+                        "country": "México",
+                        "country_code": "+52",
+                        "type": "WORK"
+                    }
+                ],
+                "birthday": "2000-01-01",
+                "emails": [
+                    {
+                        "email": "pizza.planeta@gmail.com",
+                        "type": "WORK"
+                    }
+                ],
+                "name": {
+                    "formatted_name": "Pizza Planeta",
+                    "first_name": "Buzz",
+                    "last_name": "Lightyear",
+                    "middle_name": "",
+                    "suffix": "",
+                    "prefix": ""
+                },
+                "org": {
+                    "company": "Pizza Planeta",
+                    "department": "Ventas",
+                    "title": "Ventas"
+                },
+                "phones": [
+                    {
+                        "phone": "555555555",
+                        "wa_id": "5255555555",
+                        "type": "WORK"
+                    }
+                ],
+                "urls": [
+                    {
+                        "url": "",
+                        "type": "WORK"
+                    }
+                ]
+            }
+        ]
+    });
+    return data;
+}
+
 function MessageText(textResponse, number){
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
@@ -11,94 +123,54 @@ function MessageText(textResponse, number){
     return data;
 }
 
-function MessageContact(number){
+function AskingForAddress(value) {
+    return value
+}
+
+function LocationRequired(number) {
+    console.log('Location Here!')
+}
+
+function GetMessageLocation(data){
+    console.log('data', data);
+    myConsole.log(data);
+
+    return data;
+}
+
+function MessageValidation() {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
-        "to": number,    
-        "type": "contact",
-        "contacts": [
-            {
-                "addresses": [
+        "to": number,
+        "type": "interactive",  
+        "interactive": {
+            "type": "button",
+            "body": {
+                "text": "Confirmar dirección"
+            },
+            "action": {
+                "buttons": [
                     {
-                        "street": "Avenida Juárez #127",
-                        "city": "Ciudad de México",
-                        "state": "Coyoacán",
-                        "zip": "04040",
-                        "country": "México",
-                        "country_code": "+52",
-                        "type": "WORK"
-                    }
-                ],
-                "org": {
-                    "company": "Pizzería Rocko",
-                    "department": "Ventas",
-                    "title": "Pizzas Rocko"
-                },
-                "phones": [
+                        "type": "reply",
+                        "reply": {
+                            "id": "option-yes",
+                            "title": "✅ Si, es correcta"
+                        }
+                    },
                     {
-                        "phone": "55555555555",
-                        "wa_id": "52555555555",
-                        "type": "WORK"
+                        "type": "reply",
+                        "reply": {
+                            "id": "option-cancel",
+                            "title": "⛔ No, deseo cambiarla"
+                        }
                     }
                 ]
             }
-        ]
+        }     
     });
     return data;
 }
 
-function MessageList(number){
-    const data = JSON.stringify({
-        "messaging_product": "whatsapp",
-        "to": number,
-        "type": "interactive",
-        "interactive": {
-            "type": "list",
-            "body": {
-                "text": "✅ Tengo estas opciones"
-            },
-            "footer": {
-                "text": "Selecciona una de las opciones para poder atenderte"
-            },
-            "action": {
-                "button": "Ver opciones",
-                "sections": [
-                    {
-                        "title": "Compra y vende productos",
-                        "rows": [
-                            {
-                                "id": "main-comprar",
-                                "title": "Comprar",
-                                "description": "Compra los mejores productos para tu hogar"
-                            },
-                            {
-                                "id": "main-vender",
-                                "title": "Vender",
-                                "description": "Vende tus productos"
-                            }
-                        ]
-                    },
-                    {
-                        "title": "📍Centro de atención",
-                        "rows": [
-                            {
-                                "id": "main-agencia",
-                                "title": "Agencia",
-                                "description": "Puedes visitar nuestra agencia."
-                            },
-                            {
-                                "id": "main-contacto",
-                                "title": "Centro de contacto",
-                                "description": "Te atenderá uno de nuestro agentes."
-                            }
-                        ]
-                    }
-                ]
-            }
-        }
-    });
-    return data;
-}
 
 function MessagePizzaSizeOneIngredient(number){
     const data = JSON.stringify({
@@ -358,46 +430,6 @@ function MessagePizzaSpecialIngredients(number){
     return data;
 }
 
-function MessageOptions(number){
-    const data = JSON.stringify({
-        "messaging_product": "whatsapp",
-        "to": number,
-        "type": "interactive",  
-        "interactive": {
-            "type": "button",
-            "body": {
-                "text": "¿Qué deseas hacer?"
-            },
-            "action": {
-                "buttons": [
-                    {
-                        "type": "reply",
-                        "reply": {
-                            "id": "option-pizza",
-                            "title": "Comprar una pizza"
-                        }
-                    },
-                    {
-                        "type": "reply",
-                        "reply": {
-                            "id": "option-pizzas",
-                            "title": "Comprar más de 2"
-                        }
-                    },
-                    {
-                        "type": "reply",
-                        "reply": {
-                            "id": "option-call",
-                            "title": "Llamar a la pizzería"
-                        }
-                    }
-                ]
-            }
-        }     
-    });
-    return data;
-}
-
 function MessageOptionsDelivery(number){
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
@@ -449,8 +481,7 @@ function MessageLocation(number){
 
 module.exports = {
 MessageText,
-MessageList,
-MessageOptions,
+MessageMainMenu,
 MessageLocation,
 MessagePizzaSizeOneIngredient,
 MessagePizzaSizeSpecialIngredients,
@@ -458,5 +489,10 @@ MessageContact,
 MessagePizzaIngredients,
 MessagePizzaOneIngredient,
 MessagePizzaSpecialIngredients,
-MessageOptionsDelivery
+MessageOptionsDelivery,
+MessageImage,
+GetMessageLocation,
+AskingForAddress,
+MessageValidation,
+LocationRequired
 };

@@ -1,0 +1,2 @@
+Error:TypeError [ERR_INVALID_ARG_TYPE]: The "chunk" argument must be of type string or an instance of Buffer or Uint8Array. Received undefined
+sin mensaje
