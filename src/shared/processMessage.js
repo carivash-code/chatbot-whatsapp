@@ -26,7 +26,7 @@ function Process(textUser, number){
     else if(textUser.includes('realizar pedido')) {
         let model = whatsappModel.MessageText("Empecemos con tu ubicación.\nPuedes mandar *manualmente tu dirección, empezando con Calle, Cerrada, Privada o Avenida* o *compartir tu ubicación.* 📍", number);
         models.push(model);
-        whatsappModel.GetMessageLocation(textUser, number);
+        // whatsappModel.GetMessageLocation(textUser, number);
     }
     else if(textUser.includes('calle') ||
     textUser.includes('cerrada') ||
