@@ -1,14 +1,27 @@
 const whatsappModel = require("../shared/whatsappmodels");
+const whatsappLocation = require("../shared/locationMessage");
 const whatsappService = require("../services/whatsappService");
 
 function Process(textUser, number){
-    textUser= textUser.toLowerCase();
+    textUser = typeof textUser == 'string' ? textUser.toLowerCase() : textUser;
     let models = [];
     const cart = [];
     const pizzaPromo = {
         number: 0
     };
+    const locationCoords = typeof textUser !== 'string' ? textUser : '';
 
+    // if(typeof textUser === 'object') {
+    //     whatsappLocation.GetLocation(locationCoords);
+    //     const { distance, duration } = whatsappLocation.distance.data;
+
+    //     const durationDis = duration.text.replace('hour','hora')
+    //     let model = whatsappModel.MessageText(
+    //         "Distancia del negocio a tu dirección es de "+ distance.text+"\n"+
+    //         "Y tardaríamos en llegar "+durationDis+" aproximadamente."
+    //         , number);
+    //     models.push(model);
+    // }
 
     if(textUser.includes("hola") ||
     textUser.includes("buenas") ||
@@ -18,6 +31,17 @@ function Process(textUser, number){
         const modelBuy = whatsappModel.MessageMainMenu(number);
 
         models.push(modelBuy);
+    }
+    else if(typeof textUser === 'object') {
+        whatsappLocation.GetLocation(locationCoords);
+        const { distance, duration } = whatsappLocation.distance.data;
+
+        const durationDis = duration.text.replace('hour','hora')
+        let model = whatsappModel.MessageText(
+            "Distancia del negocio a tu dirección es de "+ distance.text+"\n"+
+            "Y tardaríamos en llegar "+durationDis+" aproximadamente."
+            , number);
+        models.push(model);
     }
     else if(textUser.includes('ver el menú')) {
         const model = whatsappModel.MessageImage(number);

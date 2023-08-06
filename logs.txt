@@ -1,0 +1,1 @@
+Error:TypeError: textUser.includes is not a function

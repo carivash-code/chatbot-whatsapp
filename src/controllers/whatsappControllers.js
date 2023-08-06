@@ -67,7 +67,7 @@ function GetTextUser(messages){
         }
     }
     else if(typeMessge == "location"){
-        text = (messages["location"])["address"]
+        text = messages["location"]
     }
     else{
         myConsole.log("sin mensaje");
