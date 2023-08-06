@@ -48,7 +48,15 @@ const ReceivedMessage = (req, res) => {
     }
 }
 
-async function GetTextUser(messages){
+async function GetLocation(messages) {
+    const locationParams = messages["location"];
+
+    return whatsappLocation.GetRatioDistance(locationParams).then(async(res) => {
+        return await res;
+    });
+}
+
+function GetTextUser(messages){
     let text = "";
     let typeMessge = messages["type"];
 
@@ -70,15 +78,16 @@ async function GetTextUser(messages){
         }
     }
     else if(typeMessge == "location"){
-
-        const locationParams = messages["location"];
-        await whatsappLocation.GetRatioDistance(locationParams).then(async(res) => {
-            text = res;
-        });
+        // const locationParams = messages["location"];
+        // whatsappLocation.GetRatioDistance(locationParams).then((res) => {
+        //     text = res;
+        // });
+        text = GetLocation(messages)
     }
     else{
         myConsole.log("sin mensaje");
     }
+    console.log(text)
     return text;
 }
 

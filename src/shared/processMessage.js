@@ -2,6 +2,7 @@ const whatsappModel = require("../shared/whatsappmodels");
 const whatsappService = require("../services/whatsappService");
 
 async function Process(textUser, number){
+    console.log('textUser', textUser, '-', typeof textUser)
     textUser = typeof textUser == 'string' ? textUser.toLowerCase() : textUser;
     let models = [];
     const cart = [];
@@ -10,7 +11,7 @@ async function Process(textUser, number){
     };
 
 
-    if(typeof textUser == 'object') {
+    if(typeof textUser === 'object') {
         const data = await textUser;
 
         const tiempo = await data.duration.text.replace('hour','hora');
