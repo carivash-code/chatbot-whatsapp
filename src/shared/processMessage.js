@@ -3,7 +3,6 @@ const whatsappLocation = require("../shared/locationMessage");
 const whatsappService = require("../services/whatsappService");
 
 function Process(textUser, number){
-    console.log('Type textUser', typeof textUser)
     textUser = typeof textUser == 'string' ? textUser.toLowerCase() : textUser;
     let models = [];
     const cart = [];
@@ -11,15 +10,14 @@ function Process(textUser, number){
         number: 0
     };
 
+
     if(typeof textUser == 'object') {
         whatsappLocation.GetRatioDistance(textUser).then((res) => {
-            console.log('RES DISTANCE', res);
-            if(res !== {}) {
+            if(res) {
                 const { distance, duration } = res;
         
                 const durationDis = duration.text.replace('hour','hora');
-        
-                console.log('Distance', distance.text, durationDis);
+                console.log('res', res)
                 let model = whatsappModel.MessageText(
                     "Distancia del negocio a tu dirección es de "+ distance.text+"\n"+
                     "Y tardaríamos en llegar "+durationDis+" aproximadamente."

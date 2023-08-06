@@ -59,10 +59,8 @@ function GetRatioDistance(data) {
     })
     .catch(function (error) {
       console.log(error)
+      return Promise.resolve(error);
     })
-
-    console.log(dataD)
-    return Promise(resolve(dataD));
 }
 
 module.exports = {
