@@ -124,6 +124,7 @@ function MessageText(textResponse, number){
 
 function GetMessageLocation(address, number){
     cart.push({direccion: address});
+    console.log('ADDRESS----', direccion);
 }
 
 function MessageValidation() {
@@ -166,10 +167,11 @@ function MessageOrderStart(number){
         "type": "interactive",  
         "interactive": {
             "type": "button",
-            "body": {
+            "header": {
+                "type":"text",
                 "text": "Menú de alimentos"
             },
-            "footer": {
+            "body": {
                 "text": "Te recordamos que todos los días tenemo ¡PROMOCIÓN 2X1!"
             },
             "action": {

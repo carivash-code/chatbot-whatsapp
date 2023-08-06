@@ -1,0 +1,18 @@
+Location {
+  latitude: '19.426936757194802',
+  longitude: '-99.16768056069263',
+  name: 'ángel de la independencias',
+  address: 'Av. P.º de la Reforma, Juárez, Cuauhtémoc, 06600 Ciudad de México, CDMX'
+}
+Location {
+  latitude: '19.426936757194802',
+  longitude: '-99.16768056069263',
+  name: 'ángel de la independencias',
+  address: 'avenida P.º de la Reforma, Juárez, Cuauhtémoc, 06600 Ciudad de México, CDMX'
+}
+Location {
+  latitude: '19.426936757194802',
+  longitude: '-99.16768056069263',
+  name: 'ángel de la independencias',
+  address: 'Avenida P.º de la Reforma, Juárez, Cuauhtémoc, 06600 Ciudad de México, CDMX'
+}

@@ -5,13 +5,16 @@ function Process(textUser, number){
     textUser= textUser.toLowerCase();
     let models = [];
     const cart = [];
-    const pizzaPromo = { number: 1 };
+    const pizzaPromo = {
+        number: 0
+    };
 
 
     if(textUser.includes("hola") ||
     textUser.includes("buenas") ||
     textUser.includes("ola")
     ){
+        pizzaPromo.number = 1;
         const modelBuy = whatsappModel.MessageMainMenu(number);
 
         models.push(modelBuy);
@@ -23,14 +26,12 @@ function Process(textUser, number){
     else if(textUser.includes('realizar pedido')) {
         let model = whatsappModel.MessageText("Empecemos con tu ubicación.\nPuedes mandar *manualmente tu dirección, empezando con Calle, Cerrada, Privada o Avenida* o *compartir tu ubicación.* 📍", number);
         models.push(model);
+        whatsappModel.GetMessageLocation(textUser, number);
     }
     else if(textUser.includes('calle') ||
     textUser.includes('cerrada') ||
     textUser.includes('privada') ||
     textUser.includes('avenida')){
-        whatsappModel.GetMessageLocation(textUser, number);
-
-        const model = whatsappModel.MessageText("Estamos validando la cobertura hacia tu domicilio en, " + textUser + " 📡...", number);
         const model2 = whatsappModel.MessageLocationConfirmation(number);
 
         models.push(model, model2);
@@ -70,23 +71,13 @@ function Process(textUser, number){
     textUser.includes("atún") || 
     textUser.includes("jamón")){
         const modelConfirmation = whatsappModel.MessageOptionsDelivery(number);
-
         models.push(modelConfirmation);
-
-        cart.push({pizza1: textUser});
     }
     else if(textUser.includes('✅ confirmar pedido')) {
         const modelList = whatsappModel.MessagePizzaOneIngredientSecond(number);
         models.push(modelList);
-        cart.push({pizza2: textUser});
-    }
-    else if(cart.pizza2 && textUser.includes("pollo") ||
-    textUser.includes("salchicha") ||
-    textUser.includes("champiñón") ||
-    textUser.includes("atún") || 
-    textUser.includes("jamón")){
-        const model = whatsappModel.MessageText("Resumen de pedido: " + cart, number);
-        models.push(model)
+
+        pizzaPromo.number = 2;
     }
     // else if(textUser.includes('más de 2 ingredientes')){
     //     let modelList = whatsappModel.MessagePizzaSizeSpecialIngredients(number);
@@ -141,7 +132,6 @@ function Process(textUser, number){
     }
 
     models.forEach(model => {
-        console.log('Model', model)
         whatsappService.SendMessageWhatsApp(model);
     });
 }

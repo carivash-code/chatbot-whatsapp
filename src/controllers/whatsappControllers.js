@@ -65,7 +65,11 @@ function GetTextUser(messages){
         }else{
             myConsole.log("sin mensaje");
         }
-    }else{
+    }
+    else if(typeMessge == "location"){
+        text = (messages["location"])["address"]
+    }
+    else{
         myConsole.log("sin mensaje");
     }
     return text;
