@@ -1,5 +1,4 @@
-const fs = require("fs");
-const myConsole = new console.Console(fs.createWriteStream("./logs.txt"));
+const cart = [];
 
 function MessageMainMenu(number){
     const data = JSON.stringify({
@@ -9,7 +8,7 @@ function MessageMainMenu(number){
         "interactive": {
             "type": "button",
             "body": {
-                "text": "Menú principal"
+                "text": "¡Hola y bienvenido(a)!, soy Jessy 👩‍🚀 el bot asistente de 🪐 *Pizza Planeta* 🪐 y estoy aquí para ayudarte en ésta magnífica experiencia."
             },
             "action": {
                 "buttons": [
@@ -71,7 +70,7 @@ function MessageContact(number){
                         "type": "WORK"
                     }
                 ],
-                "birthday": "2000-01-01",
+                "birthday": "",
                 "emails": [
                     {
                         "email": "pizza.planeta@gmail.com",
@@ -87,9 +86,9 @@ function MessageContact(number){
                     "prefix": ""
                 },
                 "org": {
-                    "company": "Pizza Planeta",
-                    "department": "Ventas",
-                    "title": "Ventas"
+                    "company": "",
+                    "department": "",
+                    "title": ""
                 },
                 "phones": [
                     {
@@ -123,19 +122,8 @@ function MessageText(textResponse, number){
     return data;
 }
 
-function AskingForAddress(value) {
-    return value
-}
-
-function LocationRequired(number) {
-    console.log('Location Here!')
-}
-
-function GetMessageLocation(data){
-    console.log('data', data);
-    myConsole.log(data);
-
-    return data;
+function GetMessageLocation(address, number){
+    cart.push({direccion: address});
 }
 
 function MessageValidation() {
@@ -171,6 +159,81 @@ function MessageValidation() {
     return data;
 }
 
+function MessageOrderStart(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "interactive",  
+        "interactive": {
+            "type": "button",
+            "body": {
+                "text": "Menú de alimentos"
+            },
+            "footer": {
+                "text": "Te recordamos que todos los días tenemo ¡PROMOCIÓN 2X1!"
+            },
+            "action": {
+                "buttons": [
+                    {
+                        "type": "reply",
+                        "reply": {
+                            "id": "option-simple",
+                            "title": "Pizzas Sencillas"
+                        }
+                    },
+                    {
+                        "type": "reply",
+                        "reply": {
+                            "id": "option-special",
+                            "title": "Pizzas Especiales"
+                        }
+                    },
+                    {
+                        "type": "reply",
+                        "reply": {
+                            "id": "option-dessert",
+                            "title": "Postres"
+                        }
+                    }
+                ]
+            }
+        }     
+    });
+    return data;
+}
+
+function MessageLocationConfirmation(number){      
+    const data = JSON.stringify({
+            "messaging_product": "whatsapp",
+            "to": number,
+            "type": "interactive",  
+            "interactive": {
+                "type": "button",
+                "body": {
+                    "text": "¡Buena noticia, tenemos cobertura!"
+                },
+                "action": {
+                    "buttons": [
+                        {
+                            "type": "reply",
+                            "reply": {
+                                "id": "option-start",
+                                "title": "Comencemos"
+                            }
+                        },
+                        {
+                            "type": "reply",
+                            "reply": {
+                                "id": "option-cancel",
+                                "title": "Cancelar Pedido"
+                            }
+                        }
+                    ]
+                }
+            }     
+    });
+     return data;
+}
 
 function MessagePizzaSizeOneIngredient(number){
     const data = JSON.stringify({
@@ -180,7 +243,7 @@ function MessagePizzaSizeOneIngredient(number){
         "interactive": {
             "type": "list",
             "body": {
-                "text": "*2* ¿De qué tamaño quieres tu pizza 🍕?"
+                "text": "¿De qué tamaño quieres tu pizza 🍕?"
             },
             "footer": {
                 "text": "Escoje el tamaño ideal para tu hambre de pizza! 🤩"
@@ -312,7 +375,59 @@ function MessagePizzaOneIngredient(number){
         "interactive": {
             "type": "list",
             "body": {
-                "text": "*3* Escoje tu ingrediente"
+                "text": "Escoje tu ingrediente"
+            },
+            "footer": {
+                "text": "Lista de ingredientes"
+            },
+            "action": {
+                "button": "Ingredientes",
+                "sections": [
+                    {
+                        "title": "Ingredientes",
+                        "rows": [
+                            {
+                                "id": "in-chicken",
+                                "title": "Pollo",
+                            },
+                            {
+                                "id": "in-sausage",
+                                "title": "Salchicha",
+                            },
+                            {
+                                "id": "in-mashroom",
+                                "title": "Champiñón",
+                            },
+                            {
+                                "id": "in-tuna",
+                                "title": "Atún",
+                            },
+                            {
+                                "id": "in-ham",
+                                "title": "Jamón",
+                            },
+                        ]
+                    }
+                ]
+            }
+        }
+    });
+    return data;
+}
+
+function MessagePizzaOneIngredientSecond(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "interactive",
+        "interactive": {
+            "type": "list",
+            "header": {
+                "type":"text",
+                "text": "Segunda pizza"
+            },
+            "body": {
+                "text": "Escoje tu ingrediente"
             },
             "footer": {
                 "text": "Lista de ingredientes"
@@ -437,8 +552,15 @@ function MessageOptionsDelivery(number){
         "type": "interactive",  
         "interactive": {
             "type": "button",
+            "header": {
+                "type": "text",
+                "text": "¡Excelente decisión!"
+            },
             "body": {
-                "text": "Confirmar pedido"
+                "text": "Recuerda que siempre tenemos *promoción de 2X1*,\n¿De qué sabor será tu siguiente pizza?"
+            },
+            "footer": {
+                "text": "Antes de continuar confirma tu pedido"
             },
             "action": {
                 "buttons": [
@@ -492,7 +614,9 @@ MessagePizzaSpecialIngredients,
 MessageOptionsDelivery,
 MessageImage,
 GetMessageLocation,
-AskingForAddress,
 MessageValidation,
-LocationRequired
+MessageOrderStart,
+MessageLocationConfirmation,
+MessagePizzaOneIngredientSecond,
+cart
 };
