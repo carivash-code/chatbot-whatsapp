@@ -2,6 +2,7 @@ const fs = require("fs");
 require('dotenv').config();
 const myConsole = new console.Console(fs.createWriteStream("./logs.txt"));
 const processMessage = require("../shared/processMessage");
+const whatsappLocation = require("../shared/locationMessage");
 const VerifyToken = (req, res) => {
     
     try{
@@ -47,9 +48,10 @@ const ReceivedMessage = (req, res) => {
     }
 }
 
-function GetTextUser(messages){
+async function GetTextUser(messages){
     let text = "";
     let typeMessge = messages["type"];
+
     if(typeMessge == "text"){
         text = (messages["text"])["body"];
     }
@@ -68,7 +70,11 @@ function GetTextUser(messages){
         }
     }
     else if(typeMessge == "location"){
-        text = messages["location"]
+
+        const locationParams = messages["location"];
+        await whatsappLocation.GetRatioDistance(locationParams).then(async(res) => {
+            text = res;
+        });
     }
     else{
         myConsole.log("sin mensaje");

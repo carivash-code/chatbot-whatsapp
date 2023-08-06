@@ -1,8 +1,7 @@
 const whatsappModel = require("../shared/whatsappmodels");
-const whatsappLocation = require("../shared/locationMessage");
 const whatsappService = require("../services/whatsappService");
 
-function Process(textUser, number){
+async function Process(textUser, number){
     textUser = typeof textUser == 'string' ? textUser.toLowerCase() : textUser;
     let models = [];
     const cart = [];
@@ -12,19 +11,15 @@ function Process(textUser, number){
 
 
     if(typeof textUser == 'object') {
-        whatsappLocation.GetRatioDistance(textUser).then((res) => {
-            if(res) {
-                const { distance, duration } = res;
-        
-                const durationDis = duration.text.replace('hour','hora');
-                console.log('res', res)
-                let model = whatsappModel.MessageText(
-                    "Distancia del negocio a tu dirección es de "+ distance.text+"\n"+
-                    "Y tardaríamos en llegar "+durationDis+" aproximadamente."
-                    , number);
-                models.push(model);
-            }
-        });
+        const data = await textUser;
+
+        const tiempo = await data.duration.text.replace('hour','hora');
+
+        let model = whatsappModel.MessageText(
+            "Distancia del negocio a tu dirección es de "+ await data.distance.text +"\n"+
+            "Y tardaríamos en llegar "+ tiempo +" aproximadamente."
+            , number);
+        models.push(model);
     }
     else if(textUser.includes("hola") ||
     textUser.includes("buenas") ||
@@ -48,9 +43,9 @@ function Process(textUser, number){
     textUser.includes('cerrada') ||
     textUser.includes('privada') ||
     textUser.includes('avenida')){
-        const model2 = whatsappModel.MessageLocationConfirmation(number);
+        const model = whatsappModel.MessageLocationConfirmation(number);
 
-        models.push(model, model2);
+        models.push(model);
 
     }
     else if(textUser.includes('comencemos')) {

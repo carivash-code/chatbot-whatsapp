@@ -60,7 +60,7 @@ function GetRatioDistance(data) {
     })
     .catch(function (error) {
       console.log(error)
-      return Promise.resolve(error);
+      return error;
     })
 }
 
