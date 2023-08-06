@@ -12,7 +12,7 @@ function GetLocation(data) {
       latitude +
       ',' +
       longitude +
-      '&key=AIzaSyD8vFSCCWTKoKnZfF-A8lUWPvM5khkvSMc',
+      '&key='+process.env.API_KEY,
     headers: {},
   }
 

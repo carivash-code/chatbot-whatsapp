@@ -1,4 +1,5 @@
 const fs = require("fs");
+require('dotenv').config();
 const myConsole = new console.Console(fs.createWriteStream("./logs.txt"));
 const https = require("https");
 function SendMessageWhatsApp(data){
@@ -10,7 +11,7 @@ function SendMessageWhatsApp(data){
         body: data,
         headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer EAADpUB9sFKoBO7ZCr2o6L2GjfkzDXcgogj9dFnsMUKEZBBUnZBnIyGKLTkLyayJ5fSICZCNecWlgSWBZBZAWIwb38783QZAAuOZB7k0VLkS5PZCRKrK4XLoEBiW05vZACOBG7OxsB4miniN3Oq6qqIZALl2TvEqHG9qhMXo9K6bMkQj4AwTMttbZCp2iZC7qTVoYJR35XxIuOdVJRayMekFlvFxBXe3LJLvR2ERV83GIAi64ZD"
+            Authorization: "Bearer "+process.env.FB_TOKEN
         }
     };
     const req = https.request(options, res => {

@@ -1,10 +1,11 @@
 const fs = require("fs");
+require('dotenv').config();
 const myConsole = new console.Console(fs.createWriteStream("./logs.txt"));
 const processMessage = require("../shared/processMessage");
 const VerifyToken = (req, res) => {
     
     try{
-        let accessToken = "DASKFN243597324DF9823EE";
+        let accessToken = process.env.ACCESS_TOKEN;
         let token = req.query["hub.verify_token"];
         let challenge = req.query["hub.challenge"];
 
