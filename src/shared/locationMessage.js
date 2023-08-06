@@ -1,3 +1,4 @@
+require('dotenv').config();
 const axios = require('axios')
 const address = {}
 
@@ -44,7 +45,7 @@ function GetRatioDistance(data) {
       negocio +
       '&destinations=' +
       myAddress +
-      '&units=si&key=AIzaSyD8vFSCCWTKoKnZfF-A8lUWPvM5khkvSMc',
+      '&units=si&key='+process.env.API_KEY,
     headers: {},
   }
 
