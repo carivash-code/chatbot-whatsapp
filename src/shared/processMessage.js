@@ -37,9 +37,8 @@ async function Process(textUser, number){
     else if(textUser.includes("out of service")){
         let model = whatsappModel.MessageText(
             "Lamentamos mucho el inconveniente 🙂\n"+
-            "Nuestro horario de atención es todos los días de 10:00 hrs a 21:30 hrs."+
-            "Aplican excepciones en algunos días festivos.\n"+
-            textUser
+            "Nuestro horario de atención es todos los días de 10:00 hrs a 21:30 hrs.\n"+
+            "Aplican excepciones en algunos días festivos."
         , number);
         models.push(model);
     }
