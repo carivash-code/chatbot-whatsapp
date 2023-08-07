@@ -182,20 +182,6 @@ function MessageOrderStart(number){
                             "id": "option-simple",
                             "title": "Pizzas Sencillas"
                         }
-                    },
-                    {
-                        "type": "reply",
-                        "reply": {
-                            "id": "option-special",
-                            "title": "Pizzas Especiales"
-                        }
-                    },
-                    {
-                        "type": "reply",
-                        "reply": {
-                            "id": "option-dessert",
-                            "title": "Postres"
-                        }
                     }
                 ]
             }
