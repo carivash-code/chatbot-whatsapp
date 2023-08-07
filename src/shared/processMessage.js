@@ -84,7 +84,7 @@ async function Process(textUser, number){
         cart.push({pizzaType: textUser});
     }
     else if(textUser.includes("sencilla") ){
-        const modelList = whatsappModel.MessagePizzaOneIngredient(number);
+        const modelList = whatsappModel.MessagePizzaOneIngredient2(number);
         models.push(modelList);
     }
     else if(textUser.includes("pollo") ||
@@ -95,7 +95,7 @@ async function Process(textUser, number){
         const modelConfirmation = whatsappModel.MessageOptionsDelivery(number);
         models.push(modelConfirmation);
     }
-    else if(textUser.includes('✅ confirmar pedido')) {
+    else if(textUser.includes('confirmar pedido')) {
         const modelList = whatsappModel.MessagePizzaOneIngredientSecond(number);
         models.push(modelList);
 

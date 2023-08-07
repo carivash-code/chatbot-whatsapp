@@ -386,7 +386,7 @@ function MessagePizzaOneIngredient(number){
                 "button": "Ingredientes",
                 "sections": [
                     {
-                        "title": "Ingredientes",
+                        "title": "Primer Pizza",
                         "rows": [
                             {
                                 "id": "in-chicken",
@@ -407,6 +407,70 @@ function MessagePizzaOneIngredient(number){
                             {
                                 "id": "in-ham",
                                 "title": "Jamón",
+                            },
+                        ]
+                    },
+                    {
+                        "title": "Segunda Pizza",
+                        "rows": [
+                            {
+                                "id": "in-chicken2",
+                                "title": "Pollo",
+                            },
+                            {
+                                "id": "in-sausage2",
+                                "title": "Salchicha",
+                            },
+                            {
+                                "id": "in-mashroom2",
+                                "title": "Champiñón",
+                            },
+                            {
+                                "id": "in-tuna2",
+                                "title": "Atún",
+                            },
+                            {
+                                "id": "in-ham",
+                                "title": "Jamón",
+                            },
+                        ]
+                    }
+                ]
+            }
+        }
+    });
+    return data;
+}
+function MessagePizzaOneIngredient2(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "interactive",
+        "interactive": {
+            "type": "product_list",
+            "header": {
+                "type": "text",
+                "text":"Pizzas al 2X1"
+            },  
+            "body": {
+                "text": "Escoje tu ingrediente"
+            },
+            "action": {
+                "catalog_id":"6133132260146282",
+                "sections": [
+                    {
+                        "title": "Primer Pizza",
+                        "product_items": [
+                            {
+                                "product_retailer_id": "3",
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Segunda Pizza",
+                        "product_items": [
+                            {
+                                "product_retailer_id": "3",
                             },
                         ]
                     }
@@ -620,5 +684,6 @@ MessageValidation,
 MessageOrderStart,
 MessageLocationConfirmation,
 MessagePizzaOneIngredientSecond,
+MessagePizzaOneIngredient2,
 cart
 };
