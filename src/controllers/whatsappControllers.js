@@ -58,10 +58,11 @@ async function GetLocation(messages) {
 
 function GetTime(messages) {
     const date = new Date(messages.Timestamp * 1000);
-    const enUS = date.toLocaleTimeString('en-US', {
-        hour: '2-digit',
-        //minute: '2-digit'
-      });
+    const enUS = date.toLocaleTimeString();
+    // const enUS = date.toLocaleTimeString('en-US', {
+    //     hour: '2-digit',
+    //     minute: '2-digit'
+    //   });
 
     return enUS
 }
@@ -71,19 +72,22 @@ function GetTextUser(messages){
     let typeMessge = messages["type"];
 
     if(typeMessge == "text"){
-        console.log('timestamp', messages.Timestamp)
         const time = GetTime(messages);
-        const H = Number(time.slice(0, 2)) + 1;
-        const T = time.slice(3);
 
-        console.log(time)
-        console.log(time <= '10 AM')
-        console.log(time >= '10 PM')
-        if( time <= '10 AM' || time >= '10 PM' ) {
+        const horaApertura = new Date();
+        horaApertura.setHours(13, 30, 0); 
+
+        const horaCierre  = new Date();
+        horaCierre .setHours(22, 0, 0); 
+
+        const horaAperturaLocal = horaApertura.toLocaleTimeString();
+        const horaCierreLocal = horaCierre.toLocaleTimeString();
+
+        if( time < horaAperturaLocal || time >= horaCierreLocal ) {
            console.log('Out of service');
            text = 'Out of service';
         } else {
-            text = (messages["text"])["body"];
+           text = (messages["text"])["body"];
         }
     }
     else if(typeMessge == "interactive"){
