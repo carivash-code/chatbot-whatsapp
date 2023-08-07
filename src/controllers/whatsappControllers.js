@@ -82,8 +82,8 @@ function GetTextUser(messages){
         const horaCierre  = new Date();
         horaCierre .setHours(22, 0, 0); 
 
-        const horaAperturaLocal = horaApertura.toLocaleTimeString();
-        const horaCierreLocal = horaCierre.toLocaleTimeString();
+        const horaAperturaLocal = horaApertura.toLocaleTimeString('en-GB');
+        const horaCierreLocal = horaCierre.toLocaleTimeString('en-GB');
         console.log(time);
         console.log(time < horaAperturaLocal, horaAperturaLocal);
         console.log(time >= horaCierreLocal, horaCierreLocal);
