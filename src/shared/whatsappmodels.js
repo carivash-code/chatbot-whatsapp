@@ -172,7 +172,7 @@ function MessageOrderStart(number){
                 "text": "Menú de alimentos"
             },
             "body": {
-                "text": "Te recordamos que todos los días tenemo ¡PROMOCIÓN 2X1!"
+                "text": "Escoje la pizza de tu preferencia"
             },
             "action": {
                 "buttons": [
@@ -386,7 +386,7 @@ function MessagePizzaOneIngredient(number){
                 "button": "Ingredientes",
                 "sections": [
                     {
-                        "title": "Primer Pizza",
+                        "title": "Sabor de la Pizza",
                         "rows": [
                             {
                                 "id": "in-chicken",
@@ -402,31 +402,6 @@ function MessagePizzaOneIngredient(number){
                             },
                             {
                                 "id": "in-tuna",
-                                "title": "Atún",
-                            },
-                            {
-                                "id": "in-ham",
-                                "title": "Jamón",
-                            },
-                        ]
-                    },
-                    {
-                        "title": "Segunda Pizza",
-                        "rows": [
-                            {
-                                "id": "in-chicken2",
-                                "title": "Pollo",
-                            },
-                            {
-                                "id": "in-sausage2",
-                                "title": "Salchicha",
-                            },
-                            {
-                                "id": "in-mashroom2",
-                                "title": "Champiñón",
-                            },
-                            {
-                                "id": "in-tuna2",
                                 "title": "Atún",
                             },
                             {
@@ -450,7 +425,7 @@ function MessagePizzaOneIngredient2(number){
             "type": "product_list",
             "header": {
                 "type": "text",
-                "text":"Pizzas al 2X1"
+                "text":"Pizzas"
             },  
             "body": {
                 "text": "Escoje tu ingrediente"
@@ -623,9 +598,6 @@ function MessageOptionsDelivery(number){
                 "text": "¡Excelente decisión!"
             },
             "body": {
-                "text": "Recuerda que siempre tenemos *promoción de 2X1*,\n¿De qué sabor será tu siguiente pizza?"
-            },
-            "footer": {
                 "text": "Antes de continuar confirma tu pedido"
             },
             "action": {

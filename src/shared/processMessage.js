@@ -93,7 +93,7 @@ async function Process(textUser, number){
         cart.push({pizzaType: textUser});
     }
     else if(textUser.includes("sencilla") ){
-        const modelList = whatsappModel.MessagePizzaOneIngredient2(number);
+        const modelList = whatsappModel.MessagePizzaOneIngredient(number);
         models.push(modelList);
     }
     else if(textUser.includes("pollo") ||
@@ -105,10 +105,8 @@ async function Process(textUser, number){
         models.push(modelConfirmation);
     }
     else if(textUser.includes('confirmar pedido')) {
-        const modelList = whatsappModel.MessagePizzaOneIngredientSecond(number);
-        models.push(modelList);
-
-        pizzaPromo.number = 2;
+        let modelSummary = whatsappModel.MessageText("!Excelente en un máximo de 30 minutos llegará nuestro repartidor a tu domicilio 🛵!", number);
+        models.push(modelSummary);
     }
     // else if(textUser.includes('más de 2 ingredientes')){
     //     let modelList = whatsappModel.MessagePizzaSizeSpecialIngredients(number);
