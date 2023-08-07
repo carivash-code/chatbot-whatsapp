@@ -59,6 +59,7 @@ async function GetLocation(messages) {
 function GetTime(messages) {
     const date = new Date(messages.Timestamp * 1000);
     const enUS = date.toLocaleTimeString();
+    console.log(enUS);
     // const enUS = date.toLocaleTimeString('en-US', {
     //     hour: '2-digit',
     //     minute: '2-digit'
@@ -75,17 +76,20 @@ function GetTextUser(messages){
         const time = GetTime(messages);
 
         const horaApertura = new Date();
-        horaApertura.setHours(13, 30, 0); 
+        horaApertura.setHours(14, 0, 0); 
 
         const horaCierre  = new Date();
-        horaCierre .setHours(22, 0, 0); 
+        horaCierre .setHours(21, 0, 0); 
 
         const horaAperturaLocal = horaApertura.toLocaleTimeString();
         const horaCierreLocal = horaCierre.toLocaleTimeString();
+        console.log(time);
+        console.log(time < horaAperturaLocal, horaAperturaLocal);
+        console.log(time >= horaCierreLocal, horaCierreLocal);
 
         if( time < horaAperturaLocal || time >= horaCierreLocal ) {
            console.log('Out of service');
-           text = 'Out of service';
+           text = 'Out of service ' + time;
         } else {
            text = (messages["text"])["body"];
         }
