@@ -75,6 +75,7 @@ function GetTextUser(messages){
     if(typeMessge == "text"){
         const time = GetTime(messages);
 
+        console.log('messages', messages);
         const horaApertura = new Date();
         horaApertura.setHours(14, 0, 0); 
 
