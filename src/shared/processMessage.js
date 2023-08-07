@@ -2,6 +2,7 @@ const whatsappModel = require("../shared/whatsappmodels");
 const whatsappService = require("../services/whatsappService");
 
 async function Process(textUser, number){
+    console.log('Text User', textUser)
     textUser = typeof textUser == 'string' ? textUser.toLowerCase() : textUser;
     let models = [];
     const cart = [];
@@ -32,6 +33,13 @@ async function Process(textUser, number){
             models.push(model);
         }
 
+    }
+    else if('Out of service'){
+        let model = whatsappModel.MessageText(
+            "Hola, por el momento ya no estamos damos servicio, pero con gusto te atederemos el día de mañana.\n"+
+            "En un horario de 3 PM a 10 PM."
+        , number);
+        models.push(model);
     }
     else if(textUser.includes("hola") ||
     textUser.includes("buenas") ||
