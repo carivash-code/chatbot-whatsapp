@@ -2,7 +2,6 @@ const whatsappModel = require("../shared/whatsappmodels");
 const whatsappService = require("../services/whatsappService");
 
 async function Process(textUser, number){
-    console.log('textUser', textUser, '-', typeof textUser)
     textUser = typeof textUser == 'string' ? textUser.toLowerCase() : textUser;
     let models = [];
     const cart = [];
@@ -13,14 +12,26 @@ async function Process(textUser, number){
 
     if(typeof textUser === 'object') {
         const data = await textUser;
-
         const tiempo = await data.duration.text.replace('hour','hora');
+        const rangeLimit = 60000;
+
+        const limiteEntrega = await data.distance.value > rangeLimit ? 
+        '*Estás fuera de nuestro rango de entrega* ☹, lo sentimos mucho pero no podemos tomar tu pedido' : 
+        '*Estás dentro de nuestro rango de entrega* 😊';
 
         let model = whatsappModel.MessageText(
             "Distancia del negocio a tu dirección es de "+ await data.distance.text +"\n"+
-            "Y tardaríamos en llegar "+ tiempo +" aproximadamente."
+            "Y tardaríamos en llegar "+ tiempo +" aproximadamente.\n"+
+            limiteEntrega
             , number);
-        models.push(model);
+            models.push(model);
+
+        if(await data.distance.value < rangeLimit){             
+            const model = whatsappModel.MessageLocationConfirmation(number);
+        
+            models.push(model);
+        }
+
     }
     else if(textUser.includes("hola") ||
     textUser.includes("buenas") ||
@@ -38,7 +49,6 @@ async function Process(textUser, number){
     else if(textUser.includes('realizar pedido')) {
         let model = whatsappModel.MessageText("Empecemos con tu ubicación.\nPuedes mandar *manualmente tu dirección, empezando con Calle, Cerrada, Privada o Avenida* o *compartir tu ubicación.* 📍", number);
         models.push(model);
-        // whatsappModel.GetMessageLocation(textUser, number);
     }
     else if(textUser.includes('calle') ||
     textUser.includes('cerrada') ||

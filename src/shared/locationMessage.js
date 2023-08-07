@@ -1,36 +1,5 @@
 require('dotenv').config();
 const axios = require('axios')
-const address = {}
-
-function GetLocation(data) {
-  const { latitude, longitude } = data
-
-  const config = {
-    method: 'get',
-    url:
-      'https://maps.googleapis.com/maps/api/geocode/json?latlng=' +
-      latitude +
-      ',' +
-      longitude +
-      '&key='+process.env.API_KEY,
-    headers: {},
-  }
-
-  axios(config)
-    .then(function (response) {
-      const resp = response.data
-      const { status } = resp
-      if (status == 'OK') {
-        const { formatted_address } = resp.results[0]
-        address.name = formatted_address
-      }
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
-
-  return Promise.resolve(address)
-}
 
 function GetRatioDistance(data) {
   const { latitude, longitude } = data;

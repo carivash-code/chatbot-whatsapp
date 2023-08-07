@@ -78,16 +78,11 @@ function GetTextUser(messages){
         }
     }
     else if(typeMessge == "location"){
-        // const locationParams = messages["location"];
-        // whatsappLocation.GetRatioDistance(locationParams).then((res) => {
-        //     text = res;
-        // });
-        text = GetLocation(messages)
+        text = GetLocation(messages);
     }
     else{
         myConsole.log("sin mensaje");
     }
-    console.log(text)
     return text;
 }
 
