@@ -37,7 +37,7 @@ async function Process(textUser, number){
     else if('Out of service'){
         let model = whatsappModel.MessageText(
             "Hola, por el momento ya no estamos damos servicio, pero con gusto te atederemos el día de mañana.\n"+
-            "En un horario de 3 PM a 10 PM."
+            "En un horario de 10 AM a 10 PM."
         , number);
         models.push(model);
     }

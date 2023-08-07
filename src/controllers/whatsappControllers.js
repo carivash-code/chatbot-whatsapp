@@ -76,9 +76,10 @@ function GetTextUser(messages){
         const H = Number(time.slice(0, 2)) + 1;
         const T = time.slice(3);
 
-        console.log('H', H)
-        console.log('T', T)
-        if(H > 9 || H < 3 && T !== PM) {
+        console.log(time)
+        console.log(time <= '10 AM')
+        console.log(time >= '10 PM')
+        if( time <= '10 AM' || time >= '10 PM' ) {
            console.log('Out of service');
            text = 'Out of service';
         } else {
