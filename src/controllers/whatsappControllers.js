@@ -57,7 +57,7 @@ async function GetLocation(messages) {
 }
 
 function GetTime(messages) {
-    const date = new Date(messages.Timestamp * 1000);
+    const date = new Date(messages.timestamp * 1000);
     const enUS = date.toLocaleTimeString();
     console.log(enUS);
     // const enUS = date.toLocaleTimeString('en-US', {
@@ -77,7 +77,7 @@ function GetTextUser(messages){
 
         console.log('messages', messages);
         const horaApertura = new Date();
-        horaApertura.setHours(14, 0, 0); 
+        horaApertura.setHours(14, 15, 0); 
 
         const horaCierre  = new Date();
         horaCierre .setHours(21, 0, 0); 
