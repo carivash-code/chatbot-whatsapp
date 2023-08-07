@@ -77,10 +77,10 @@ function GetTextUser(messages){
 
         console.log('messages', messages);
         const horaApertura = new Date();
-        horaApertura.setHours(15, 40, 0); 
+        horaApertura.setHours(11, 0, 0); // Añadirle 1 hora mas del horario normal
 
         const horaCierre  = new Date();
-        horaCierre .setHours(22, 0, 0); 
+        horaCierre .setHours(22, 30, 0); // Añadirle 1 hora mas del horario normal
 
         const horaAperturaLocal = horaApertura.toLocaleTimeString('en-GB');
         const horaCierreLocal = horaCierre.toLocaleTimeString('en-GB');
