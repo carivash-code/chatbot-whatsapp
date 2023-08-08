@@ -2,7 +2,6 @@ const whatsappModel = require("../shared/whatsappmodels");
 const whatsappService = require("../services/whatsappService");
 
 async function Process(textUser, number){
-    console.log('Text User', textUser)
     textUser = typeof textUser == 'string' ? textUser.toLowerCase() : textUser;
     let models = [];
     const cart = [];
