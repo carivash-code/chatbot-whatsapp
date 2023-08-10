@@ -74,7 +74,7 @@ function GetTextUser(messages){
         horaApertura.setHours(11, 0, 0); // Añadirle 1 hora mas del horario normal
 
         const horaCierre  = new Date();
-        horaCierre .setHours(22, 30, 0); // Añadirle 1 hora mas del horario normal
+        horaCierre .setHours(23, 0, 0); // Añadirle 1 hora mas del horario normal
 
         const horaAperturaLocal = horaApertura.toLocaleTimeString('en-GB');
         const horaCierreLocal = horaCierre.toLocaleTimeString('en-GB');
